@@ -1,0 +1,4 @@
+﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  Arkanoid.cpp
+Main.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+  Testbed.vcxproj -> C:\Users\klime\Desktop\Homework\Physique dans les jeux videos\Arkanoid Game\Build\vs2010\bin\Debug\Testbed.exe

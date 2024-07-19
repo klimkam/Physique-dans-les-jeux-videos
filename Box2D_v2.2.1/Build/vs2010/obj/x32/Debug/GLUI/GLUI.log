@@ -1,0 +1,67 @@
+﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+cl : command line warning D9025: overriding '/W3' with '/W1'
+  quaternion.cpp
+  glui_window.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_treepanel.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui_treepanel.cpp(169,20): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_tree.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_translation.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_textbox.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_string.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_statictext.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_spinner.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_separator.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_scrollbar.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_rotation.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_rollout.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_radio.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_panel.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_node.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_mouse_iaction.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_listbox.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_list.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_filebrowser.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  Generating Code...
+  Compiling...
+  glui_edittext.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_control.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_commandline.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_column.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_checkbox.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_button.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_bitmap_img_data.cpp
+  glui_bitmaps.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_add_controls.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui.cpp
+C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  arcball.cpp
+  algebra3.cpp
+  Generating Code...
+  GLUI.vcxproj -> C:\Users\joao\Desktop\Cours_Physique_JV_JClaustre\Box2D_v2.2.1\Box2D_v2.2.1\Build\vs2010\bin\Debug\GLUI.lib
