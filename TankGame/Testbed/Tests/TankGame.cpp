@@ -79,9 +79,13 @@ void TankGun::RotateDown()
     }
 }
 
-void TankGun::Fire( )
+Projectile TankGun::Fire(b2Vec2 position)
 {
-    std::cout << "Fire" << std::endl;
+    b2Vec2 m_projectileSpeed = b2Vec2_zero;
+    m_projectileSpeed.Set(cosf(m_angle) * 10, sinf(m_angle) * 10);
+
+    Projectile m_projectile = Projectile(position + m_pivot, m_projectileSpeed);
+    return m_projectile;
 }
 
 void TankGun::Render( DebugDraw* drawInterface, b2Vec2 base )
@@ -218,7 +222,6 @@ void Tank::ProcessCmd( eTankCommand cmd )
     case eTankCmd_ChargeGun:
         break;
     case eTankCmd_FireGun:
-        m_gun.Fire();
         break;
     case eTankCmd_Stop:
         m_acceleration = 0;
@@ -277,7 +280,7 @@ void Tank::Update( float deltaTime )
 
 Projectile Tank::FireGun()
 {
-    Projectile m_projectile = Projectile(m_position, b2Vec2_zero);
+    Projectile m_projectile = m_gun.Fire(m_position);
     return m_projectile;
 }
 

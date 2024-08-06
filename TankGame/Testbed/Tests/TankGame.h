@@ -51,7 +51,7 @@ public:
 
     void RotateUp();
     void RotateDown();
-    void Fire();
+    Projectile Fire(b2Vec2 position);
 
     void Render( DebugDraw* drawInterface, b2Vec2 base );
 
