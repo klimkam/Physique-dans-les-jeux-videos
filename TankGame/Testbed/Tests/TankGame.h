@@ -13,6 +13,7 @@ enum eTankCommand
     eTankCmd_RotateGunDown,
     eTankCmd_ChargeGun,
     eTankCmd_FireGun,
+    eTankCmd_Stop,
 };
 
 class Projectile
@@ -45,7 +46,7 @@ public:
 
     void RotateUp();
     void RotateDown();
-    void Fire( Projectile& projectile );
+    void Fire();
 
     void Render( DebugDraw* drawInterface, b2Vec2 base );
 
@@ -54,7 +55,7 @@ protected:
     b2Vec2 m_pivot;
     float m_impulse = 0;
     float m_angle = 0;
-    float m_rotationSpeed = 0;
+    float m_rotationSpeed = 5;
 
     b2Vec2  m_gunPoly[4];
 };
@@ -98,7 +99,7 @@ public:
     void SetSpeed(float speed);
 
     void ProcessCmd( eTankCommand cmd );
-
+    void StopMovement(float deltaTime);
     void Render( DebugDraw* drawInterface );
 
     void Update( float deltaTime );

@@ -34,17 +34,25 @@ void TankGun::Init( b2Vec2 pivot, float diameter, float length  )
 
 void TankGun::RotateUp()
 {
-
+    m_angle += DEG2RAD(m_rotationSpeed);
+    float currentAngleDeg = RAD2DEG(m_angle);
+    if (currentAngleDeg > 180) { 
+        m_angle = DEG2RAD(180);
+    }
 }
 
 void TankGun::RotateDown()
 {
-
+    m_angle -= DEG2RAD(m_rotationSpeed);
+    float currentAngleDeg = RAD2DEG(m_angle);
+    if (currentAngleDeg < 0) { 
+        m_angle = DEG2RAD(0); 
+    }
 }
 
-void TankGun::Fire( Projectile& projectile )
+void TankGun::Fire( )
 {
-
+    std::cout << "Fire" << std::endl;
 }
 
 void TankGun::Render( DebugDraw* drawInterface, b2Vec2 base )
@@ -173,16 +181,34 @@ void Tank::ProcessCmd( eTankCommand cmd )
         m_acceleration = -MAX_ACCELERATION;
         break;
     case eTankCmd_RotateGunUp:
+        m_gun.RotateUp();
         break;
     case eTankCmd_RotateGunDown:
+        m_gun.RotateDown();
         break;
     case eTankCmd_ChargeGun:
         break;
     case eTankCmd_FireGun:
+        m_gun.Fire();
+        break;
+    case eTankCmd_Stop:
+        m_acceleration = 0;
         break;
     default:
         break;
     }
+}
+
+void Tank::StopMovement(float deltaTime)
+{
+    if (m_speed == 0) { return; }
+    float tempSpeed = m_speed;
+    tempSpeed -= tempSpeed * MAX_ACCELERATION * deltaTime;
+    if (tempSpeed < 0.1 && tempSpeed > -0.1) { tempSpeed = 0; }
+
+    SetSpeed(tempSpeed);
+    m_position.x += m_speed * deltaTime;
+    std::cout << "m_position: " << m_position.x << std::endl;
 }
 
 void Tank::Render( DebugDraw* drawInterface )
@@ -222,6 +248,11 @@ void Tank::Update( float deltaTime )
 
 void Tank::Move(float deltaTime)
 {
+    if (m_acceleration == 0) {
+        StopMovement(deltaTime);
+        return;
+    }
+
     float tempSpeed = m_speed;
     tempSpeed += m_acceleration * deltaTime;
 
@@ -278,6 +309,14 @@ void TankGame::Keyboard(unsigned char key)
     case 'd':
         m_tank.ProcessCmd(eTankCmd_MoveForward);
         break;
+    case 'q':
+        m_tank.ProcessCmd(eTankCmd_RotateGunUp);
+        break;
+    case 'e':
+        m_tank.ProcessCmd(eTankCmd_RotateGunDown);
+        break;
+    case 'w':
+        m_tank.ProcessCmd(eTankCmd_FireGun);
     default:
         break;
     }
@@ -286,6 +325,16 @@ void TankGame::Keyboard(unsigned char key)
 void TankGame::KeyboardUp(unsigned char key)
 {
     char commandKey = (char)tolower(key);
+    switch (commandKey)
+    {
+    case 'a':
+    case 'd':
+        m_tank.ProcessCmd(eTankCmd_Stop);
+        break;
+    default:
+        break;
+    }
+    std::cout << commandKey << std::endl;
 }
 
 void TankGame::CheckGroundLimit()
