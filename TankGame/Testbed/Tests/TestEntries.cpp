@@ -34,7 +34,6 @@ using namespace std;
 
 TestEntry g_testEntries[] =
 {
-	{"Cartesian", CartesianPlane::Create},
 	{"TankGame", TankGame::Create},
 
 	{NULL, NULL}

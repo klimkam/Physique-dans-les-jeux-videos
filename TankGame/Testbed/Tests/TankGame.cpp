@@ -1,6 +1,7 @@
 #include "TankGame.h"
 #include <ctype.h>
 #include <iostream>
+#include <glui/glui_internal.h>
 
 
 void Projectile::Update( float deltaTime )
@@ -86,14 +87,15 @@ void TankWheel::Render( DebugDraw* drawInterface, b2Vec2 base )
     drawInterface->DrawSolidCircle( base + m_position, m_radius, dir, b2Color(0.0,1.0,0.0) ); 
 }
 
-void TankWheel::Update( float deltaTime)
+void TankWheel::Update(float deltaTime)
 {
-
+    m_angle += m_rotationSpeed * deltaTime;
 }
 
-void TankWheel::SetSpeed( float speed )
+void TankWheel::SetSpeed(float speed)
 {
-
+    float m_rotationAngleRAD = -speed / m_radius;
+    m_rotationSpeed = m_rotationAngleRAD;
 }
 
 
@@ -186,6 +188,11 @@ void Tank::Render( DebugDraw* drawInterface )
 void Tank::Update( float deltaTime )
 {
     Move(deltaTime);
+
+    for (int i = 0; i < 4; i++)
+    {
+        m_wheels[i].Update(deltaTime);
+    }
 }
 
 void Tank::Move(float deltaTime)
@@ -195,6 +202,11 @@ void Tank::Move(float deltaTime)
     if (m_speed >= MAX_SPEED || m_speed <= -MAX_SPEED) {
         float direction = m_acceleration / abs(m_acceleration);
         m_speed = direction * MAX_SPEED;
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        m_wheels[i].SetSpeed(m_speed);
     }
 
     m_position.x += m_speed * deltaTime;
