@@ -31,7 +31,3 @@
 *.out
 *.app
 
-*Box2D*
-*Build*
-*freeglut*
-*glui*
