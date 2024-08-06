@@ -93,6 +93,9 @@ public:
     Tank();
 
     void SetPosition( b2Vec2 pos );
+    b2Vec2 GetPosition();
+    void SetAcceleration(float acceleration);
+    void SetSpeed(float speed);
 
     void ProcessCmd( eTankCommand cmd );
 

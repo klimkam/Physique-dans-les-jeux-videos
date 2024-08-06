@@ -137,6 +137,31 @@ void Tank::SetPosition( b2Vec2 pos )
     m_position = pos;
 }
 
+b2Vec2 Tank::GetPosition()
+{
+    return m_position;
+}
+
+void Tank::SetAcceleration(float acceleration)
+{
+    m_acceleration = acceleration;
+}
+
+void Tank::SetSpeed(float speed)
+{
+    m_speed = speed;
+
+    if (m_speed >= MAX_SPEED || m_speed <= -MAX_SPEED) {
+        float direction = m_acceleration / abs(m_acceleration);
+        m_speed = direction * MAX_SPEED;
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        m_wheels[i].SetSpeed(m_speed);
+    }
+}
+
 void Tank::ProcessCmd( eTankCommand cmd )
 {
     switch (cmd)
@@ -197,17 +222,10 @@ void Tank::Update( float deltaTime )
 
 void Tank::Move(float deltaTime)
 {
-    m_speed += m_acceleration * deltaTime;
-    
-    if (m_speed >= MAX_SPEED || m_speed <= -MAX_SPEED) {
-        float direction = m_acceleration / abs(m_acceleration);
-        m_speed = direction * MAX_SPEED;
-    }
+    float tempSpeed = m_speed;
+    tempSpeed += m_acceleration * deltaTime;
 
-    for (int i = 0; i < 4; i++)
-    {
-        m_wheels[i].SetSpeed(m_speed);
-    }
+    SetSpeed(tempSpeed);
 
     m_position.x += m_speed * deltaTime;
 }
@@ -272,7 +290,16 @@ void TankGame::KeyboardUp(unsigned char key)
 
 void TankGame::CheckGroundLimit()
 {
-
+    if (m_tank.GetPosition().x + 1 > m_groundEnd.x) {
+        m_tank.SetPosition(b2Vec2(m_groundEnd.x - 1, m_groundEnd.y));
+        m_tank.SetSpeed(0);
+        m_tank.SetAcceleration(0);
+    }
+    else if (m_tank.GetPosition().x - 1 < m_groundStart.x) {
+        m_tank.SetPosition(b2Vec2(m_groundStart.x + 1, m_groundStart.y));
+        m_tank.SetSpeed(0);
+        m_tank.SetAcceleration(0);
+    }
 }
 
 void TankGame::UpdateProjectiles( float deltatime )
