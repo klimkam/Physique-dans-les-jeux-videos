@@ -2,6 +2,7 @@
 #define TANK_GAME_H
 
 #include "../Framework/Test.h"
+#include <list>
 
 #define MAX_PROJECTILE 5
 
@@ -16,24 +17,28 @@ enum eTankCommand
     eTankCmd_Stop,
 };
 
+enum ProjectileState
+{
+    Ready,
+    Fired
+};
+
 class Projectile
 {
 public:
-
+    Projectile();
+    Projectile(b2Vec2 position, b2Vec2 initialSpeed);
     void Update( float deltaTime );
     void Render( DebugDraw* drawInterface );
+    ProjectileState GetState();
 
 protected: 
 
-    enum ProjectileState
-    {
-        Ready,
-        Fired
-    };
-
-    float m_lifetime;
-    ProjectileState m_state;
-
+    float m_lifetime = 3;
+    b2Vec2 m_speed;
+    b2Vec2 m_position;
+    ProjectileState m_state = Ready;
+    b2Color m_color;
 };
 
 
@@ -104,10 +109,11 @@ public:
 
     void Update( float deltaTime );
 
+    Projectile FireGun();
+
 
 protected:
     void Move(float deltaTime);
-    void RotateGun( );
 
     b2Vec2 m_position;
 
@@ -134,6 +140,8 @@ public:
     void RenderGround();
     void CheckGroundLimit();
 
+    void FireGun();
+
     static Test* Create()
 	{
 		return new TankGame;
@@ -143,9 +151,9 @@ protected:
 
     Tank m_tank;
 
-    Projectile m_projectiles[MAX_PROJECTILE];
+    std::list<Projectile> m_projectiles;
 
-    int m_nextProjectile;
+    int m_nextProjectile = 0;
 
     //Ground
     b2Vec2 m_groundStart;

@@ -4,14 +4,43 @@
 #include <glui/glui_internal.h>
 
 
+Projectile::Projectile()
+{
+    m_position = b2Vec2_zero;
+    m_position.y += 10;
+    m_speed = b2Vec2_zero;
+    m_color.Set(255, 0, 0);
+}
+
+Projectile::Projectile(b2Vec2 position, b2Vec2 initialSpeed)
+{
+    m_position = position;
+    m_speed = initialSpeed;
+    m_color.Set(255, 0, 0);
+}
+
 void Projectile::Update( float deltaTime )
 {
+    if (m_state == Fired) { return; }
+    m_lifetime -= deltaTime;
+    m_state = (m_lifetime <= 0) ? Fired : Ready;
 
+    float gravityAcceleration = -9.8;
+    float speedY = m_speed.y;
+    speedY += gravityAcceleration * deltaTime;
+    m_speed.y = speedY;
+    m_position += m_speed * deltaTime;
 }
 
 void Projectile::Render( DebugDraw* drawInterface )
 {
+    if (m_state == Fired) { return; }
+    drawInterface->DrawPoint(m_position, 3, m_color);
+}
 
+ProjectileState Projectile::GetState()
+{
+    return m_state;
 }
 
 TankGun::TankGun( )
@@ -246,6 +275,12 @@ void Tank::Update( float deltaTime )
     }
 }
 
+Projectile Tank::FireGun()
+{
+    Projectile m_projectile = Projectile(m_position, b2Vec2_zero);
+    return m_projectile;
+}
+
 void Tank::Move(float deltaTime)
 {
     if (m_acceleration == 0) {
@@ -259,11 +294,6 @@ void Tank::Move(float deltaTime)
     SetSpeed(tempSpeed);
 
     m_position.x += m_speed * deltaTime;
-}
-
-void Tank::RotateGun( )
-{
-
 }
 
 
@@ -316,7 +346,7 @@ void TankGame::Keyboard(unsigned char key)
         m_tank.ProcessCmd(eTankCmd_RotateGunDown);
         break;
     case 'w':
-        m_tank.ProcessCmd(eTankCmd_FireGun);
+        FireGun();
     default:
         break;
     }
@@ -351,30 +381,44 @@ void TankGame::CheckGroundLimit()
     }
 }
 
+void TankGame::FireGun()
+{
+    m_projectiles.push_back(m_tank.FireGun());
+}
+
 void TankGame::UpdateProjectiles( float deltatime )
 {
-    for( int i=0;i<MAX_PROJECTILE;i++)
-    {
-        m_projectiles[i].Update(deltatime);
+    std::list<Projectile>::iterator projectilesIterator = m_projectiles.begin();
+
+    while (projectilesIterator != m_projectiles.end()) {
+        bool isActive = projectilesIterator->GetState() != Fired;
+
+        if (isActive) {
+            projectilesIterator->Update(deltatime);
+            projectilesIterator++;
+        }
+        else {
+            m_projectiles.erase(projectilesIterator++);
+        }
     }
 }
 
 
 void TankGame::RenderProjectiles( )
 {
-    for( int i=0;i<MAX_PROJECTILE;i++)
+    std::list<Projectile>::iterator projectilesIterator = m_projectiles.begin();
+    for( int i=0;i< m_projectiles.size();i++)
     {
-        m_projectiles[i].Render( &m_debugDraw );
+        projectilesIterator->Render( &m_debugDraw );
+        projectilesIterator++;
     }
 }
 
 void TankGame::RenderGround()
 {
-
     b2Color groundColor = b2Color( 0.0f, 0.0f, 1.0f );
     m_debugDraw.DrawSegment( m_groundStart, m_groundEnd, groundColor );
 
     m_debugDraw.DrawSegment( m_groundStart, m_groundStart + b2Vec2(0.0f,1.0f), groundColor );
     m_debugDraw.DrawSegment( m_groundEnd, m_groundEnd + b2Vec2(0.0f,1.0f), groundColor );
-
 }
