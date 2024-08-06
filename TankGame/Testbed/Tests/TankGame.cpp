@@ -43,6 +43,11 @@ ProjectileState Projectile::GetState()
     return m_state;
 }
 
+b2Vec2 Projectile::GetPosition()
+{
+    return m_position;
+}
+
 TankGun::TankGun( )
 {
     m_pivot.SetZero();
@@ -404,6 +409,11 @@ void TankGame::UpdateProjectiles( float deltatime )
             m_projectiles.erase(projectilesIterator++);
         }
     }
+
+    projectilesIterator = m_projectiles.begin();
+    while (projectilesIterator != m_projectiles.end()) {
+        CollisionProjectiles(projectilesIterator++);
+    }
 }
 
 
@@ -414,6 +424,15 @@ void TankGame::RenderProjectiles( )
     {
         projectilesIterator->Render( &m_debugDraw );
         projectilesIterator++;
+    }
+}
+
+void TankGame::CollisionProjectiles(std::list<Projectile>::iterator projectilesIterator)
+{
+    Projectile projectile = *projectilesIterator;
+
+    if (projectile.GetPosition().y < m_groundEnd.y && projectile.GetPosition().x < m_groundEnd.x && projectile.GetPosition().x > m_groundStart.x) {
+        m_projectiles.erase(projectilesIterator);
     }
 }
 

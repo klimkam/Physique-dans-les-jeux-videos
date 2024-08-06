@@ -31,6 +31,7 @@ public:
     void Update( float deltaTime );
     void Render( DebugDraw* drawInterface );
     ProjectileState GetState();
+    b2Vec2 GetPosition();
 
 protected: 
 
@@ -136,6 +137,7 @@ public:
 
     void UpdateProjectiles( float deltatime );
     void RenderProjectiles( );
+    void CollisionProjectiles(std::list<Projectile>::iterator projectilesIterator);
 
     void RenderGround();
     void CheckGroundLimit();
